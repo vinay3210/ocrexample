@@ -53,15 +53,15 @@ export class HomePage {
   recognizeImage() {
     Tesseract.recognize(this.selectedImage)
     .progress(message => {
-      // if (message.status === 'recognizing text')
-      // this.progress.set(message.progress);
+      if (message.status === 'recognizing text')
+      this.progress.set(message.progress);
     })
     .catch(err => console.error(err))
     .then(result => {
       this.imageText = result.text;
     })
     .finally(resultOrError => {
-      // this.progress.complete();
+      this.progress.complete();
     });
   }
  
